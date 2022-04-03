@@ -78,7 +78,7 @@ def generate_main(tr):
     code += "            i += 1\n"
     code += "    return output\n"
     code += "\n"
-    code += f"def {tr.name}(text):\n"
+    code += f"def transliterate(text):\n"
     code += "    return re.sub(r'\w+', lambda m: _transliterate_word(m[0]), text)\n"
     return code
 
@@ -95,19 +95,21 @@ def generate_test(tr):
     code += "    unittest.main()\n"
     return code
 
-for child in Path('rules').iterdir():
-    tr = Transliterator(child)
-    capitalize_rules(tr)
+root = Path('build/python')
 
-    root = Path('build/python')
+src = root / 'src/ratsija'
+src.mkdir(parents=True, exist_ok=True)
 
-    shutil.copy(Path('LICENSES/CC0-1.0.txt'), root / 'LICENSE')
-    (root / 'pyproject.toml').write_text('''[build-system]
+tests = root / 'tests'
+tests.mkdir(parents=True, exist_ok=True)
+
+shutil.copy(Path('LICENSES/CC0-1.0.txt'), root / 'LICENSE')
+(root / 'pyproject.toml').write_text('''[build-system]
 requires = ["setuptools>=42"]
 build-backend = "setuptools.build_meta"
 ''')
 
-    (root / 'setup.cfg').write_text('''[metadata]
+(root / 'setup.cfg').write_text('''[metadata]
 name = ratsija
 version = 0.0.1
 author = Tuomas Siipola
@@ -131,11 +133,14 @@ python_requires = >=3.6
 [options.packages.find]
 where = src''')
 
-    src = root / 'src/ratsija'
-    src.mkdir(parents=True, exist_ok=True)
-    (src / '__init__.py').touch()
-    (src / f'{tr.name}.py').write_text(generate_main(tr))
+init = ''
 
-    tests = root / 'tests'
-    tests.mkdir(parents=True, exist_ok=True)
+for child in Path('rules').iterdir():
+    tr = Transliterator(child)
+    capitalize_rules(tr)
+
+    (src / f'{tr.name}.py').write_text(generate_main(tr))
     (tests / f'{tr.name}.py').write_text(generate_test(tr))
+    init += f'from .{tr.name} import transliterate as {tr.name}\n'
+
+(src / '__init__.py').write_text(init)
