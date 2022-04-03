@@ -1,0 +1,109 @@
+# SPDX-FileCopyrightText: 2022 Tuomas Siipola
+# SPDX-License-Identifier: CC0-1.0
+[rules]
+	а		a
+	б		b
+	в		v
+	г		g
+	д		d
+б	е		e
+в	е		e
+г	е		e
+д	е		e
+ж	е		e
+з	е		e
+й	е		e
+к	е		e
+л	е		e
+м	е		e
+н	е		e
+п	е		e
+р	е		e
+с	е		e
+т	е		e
+ф	е		e
+х	е		e
+ц	е		e
+ч	е		e
+ш	е		e
+щ	е		e
+	е		je
+ж	ё		o
+ч	ё		o
+ш	ё		o
+щ	ё		o
+	ё		jo
+	ж		ž
+	з		z
+ь	и		ji
+	и		i
+и	й	$	
+^	й		j
+и	й		j
+	й		i
+	к		k
+	л		l
+	м		m
+	н		n
+	о		o
+	п		p
+	р		r
+	с		s
+	т		t
+	у		u
+	ф		f
+	х		h
+	ц		ts
+	ч		tš
+	ш		š
+	щ		štš
+	ъ		
+	ы		y
+	ь		
+	э		e
+	ю		ju
+	я		ja
+[examples]
+Анапа	Anapa
+Бабаево	Babajevo
+Всеволожск	Vsevoložsk
+Гагарин	Gagarin
+Дедовск	Dedovsk
+Дальнереченск	Dalneretšensk
+Егорьевск	Jegorjevsk
+Гаджиево	Gadžijevo
+Горбачёв	Gorbatšov
+Тимашёвск	Timašovsk
+Хрущёв	Hruštšov
+Королёв	Koroljov
+Железнодорожный	Železnodorožnyi
+Заозёрск	Zaozjorsk
+Ишим	Išim
+Краснотурьинск	Krasnoturjinsk
+Ясный	Jasnyi
+Валдайский район	Valdaiski raion
+Каспийск	Kaspijsk
+Йошкар-Ола	Joškar-Ola
+Чайковский	Tšaikovski
+Копейск	Kopeisk
+Лихославль	Lihoslavl
+Мурманск	Murmansk
+Ногинск	Noginsk
+Олонец	Olonets
+Почеп	Potšep
+Рязань	Rjazan
+Сестрорецк	Sestroretsk
+Тольятти	Toljatti
+Уссурийск	Ussurijsk
+Фатеж	Fatež
+Хабаровск	Habarovsk
+Цивильск	Tsivilsk
+Чита	Tšita
+Шушары	Šušary
+Щёлково	Štšolkovo
+субъект	subjekt
+Кызыл	Kyzyl
+Козьмодемьянск	Kozmodemjansk
+Энгельс	Engels
+Юрюзань	Jurjuzan
+Ярославль	Jaroslavl

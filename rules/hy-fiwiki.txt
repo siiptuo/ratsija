@@ -1,0 +1,54 @@
+# SPDX-FileCopyrightText: 2022 Tuomas Siipola
+# SPDX-License-Identifier: CC0-1.0
+[rules]
+	ա		a
+	բ		b
+	գ		g
+	դ		d
+^	ե		je
+	ե		e
+	զ		z
+	է		e
+	ը		ë
+	թ		t
+	ժ		ž
+	ի		i
+	լ		l
+	խ		kh
+	ծ		ts
+	կ		k
+	հ		h
+	ձ		dz
+	ղ		gh
+	ճ		tš
+	մ		m
+	յ		j
+	ն		n
+	շ		š
+^	ո		vo
+	ու		u
+	ո		o
+	չ		tš
+	պ		p
+	ջ		j
+	ռ		r
+	ս		s
+	վ		v
+	տ		t
+	ր		r
+	ց		ts
+	ւ		u
+	փ		p
+	ք		k
+	օ		o
+	ֆ		f
+^	և		jev
+	և		ev
+[examples]
+Երևան	Jerevan
+Լևոն Հակոբի Տեր-Պետրոսյան	Levon Hakobi Ter-Petrosjan
+Ռոբերտ Սեդրակի Քոչարյան	Robert Sedraki Kotšarjan
+Սերժ Ազատի Սարգսյան	Serž Azati Sargsjan
+Արմեն Վարդանի Սարգսյան	Armen Vardani Sargsjan
+Ալեն Ռոբերտի Սիմոնյան	Alen Roberti Simonjan
+Վահագն Գառնիկի Խաչատուրյան	Vahagn Garniki Khatšaturjan
