@@ -131,5 +131,14 @@ class TestTransliterate(unittest.TestCase):
     def test_example43(self):
         self.assertEqual(ru_sfs4900('Ярославль'), 'Jaroslavl')
 
+    def test_example44(self):
+        self.assertEqual(ru_sfs4900('Бори́с Никола́евич Е́льцин'), 'Boris Nikolajevitš Jeltsin')
+
+    def test_example45(self):
+        self.assertEqual(ru_sfs4900('Влади́мир Влади́мирович Пу́тин'), 'Vladimir Vladimirovitš Putin')
+
+    def test_example46(self):
+        self.assertEqual(ru_sfs4900('Дми́трий Анато́льевич Медве́дев'), 'Dmitri Anatoljevitš Medvedev')
+
 if __name__ == '__main__':
     unittest.main()
