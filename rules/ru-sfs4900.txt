@@ -63,7 +63,9 @@
 	э		e
 	ю		ju
 	я		ja
+	◌́		
 [examples]
+# https://fi.wikipedia.org/wiki/Ven%C3%A4j%C3%A4n_translitterointi
 Анапа	Anapa
 Бабаево	Babajevo
 Всеволожск	Vsevoložsk
@@ -107,3 +109,7 @@
 Энгельс	Engels
 Юрюзань	Jurjuzan
 Ярославль	Jaroslavl
+# Presidents of Russia
+Бори́с Никола́евич Е́льцин	Boris Nikolajevitš Jeltsin
+Влади́мир Влади́мирович Пу́тин	Vladimir Vladimirovitš Putin
+Дми́трий Анато́льевич Медве́дев	Dmitri Anatoljevitš Medvedev

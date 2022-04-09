@@ -6,6 +6,13 @@ import sys
 from pathlib import Path
 import shutil
 
+def decode(text: str) -> str:
+    # Remove dotted circle from combining characters.
+    return text.replace('\u25cc', '')
+
+def encode(text: str) -> str:
+    return ''.join('\\u{:04x}'.format(ord(c)) for c in text)
+
 class Transliterator:
     def __init__(self, path: Path):
         self.name = path.stem.replace('-', '_')
@@ -19,7 +26,7 @@ class Transliterator:
                 elif m := re.match(r"\[(.*)\]", line):
                     mode = m[1]
                 elif mode == "rules":
-                    before, value, after, replacement = line.removesuffix('\n').split('\t')
+                    before, value, after, replacement = map(decode, line.removesuffix('\n').split('\t'))
                     assert len(before) <= 1
                     assert len(after) <= 1
                     self.rules.append((before, value, after, replacement))
@@ -32,6 +39,7 @@ class Transliterator:
 def capitalize_rules(tr):
     rules = []
     for before, value, after, replacement in tr.rules:
+        # TODO: don't add duplicate rules
         rules.append((before, value, after, replacement))
         if before not in ('', '^'):
             rules.append((before.upper(), value, after, replacement))
@@ -52,26 +60,26 @@ def generate_main(tr):
             conditions.append(f"i == 0")
         elif before:
             conditions.append("i > 0")
-            conditions.append(f"word[i - 1] == '{before}'")
+            conditions.append(f"word[i - 1] == '{encode(before)}'")
         if len(value) > 1:
             conditions.append(f"i + {len(value) - 1} <= len(word) - 1")
         for j, symbol in enumerate(value):
             if j == 0:
-                conditions.append(f"word[i] == '{symbol}'")
+                conditions.append(f"word[i] == '{encode(symbol)}'")
             else:
-                conditions.append(f"word[i + {j}] == '{symbol}'")
+                conditions.append(f"word[i + {j}] == '{encode(symbol)}'")
         if after == '$':
             conditions.append("i == len(word) - 1")
         elif after:
             conditions.append("i < len(word) - 1")
-            conditions.append(f"word[i + 1] == '{after}'")
+            conditions.append(f"word[i + 1] == '{encode(after)}'")
         if i == 0:
             code += "        if "
         else:
             code += "        elif "
         code += ' and '.join(conditions)
         code += ":\n"
-        code += f"            output += '{replacement}'\n"
+        code += f"            output += '{encode(replacement)}'\n"
         code += f"            i += {str(len(value))}\n"
     code += "        else:\n"
     code += "            output += word[i]\n"
@@ -79,7 +87,7 @@ def generate_main(tr):
     code += "    return output\n"
     code += "\n"
     code += f"def transliterate(text):\n"
-    code += "    return re.sub(r'\w+', lambda m: _transliterate_word(m[0]), text)\n"
+    code += "    return re.sub(r'[\\w\\u0300-\\u036f]+', lambda m: _transliterate_word(m[0]), text)\n"
     return code
 
 def generate_test(tr):
